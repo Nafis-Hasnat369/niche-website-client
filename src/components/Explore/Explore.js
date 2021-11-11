@@ -1,8 +1,9 @@
 import { CircularProgress, Container, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import SingleProduct from '../SingleProduct/SingleProduct';
+import Footer from '../Footer/Footer';
+import ExploreSingle from './ExploreSingle'
 
-const Products = () => {
+const Explore = () => {
     const [services, setServices] = useState({});
     const [isLoading, setIsLoading] = useState(true)
     useEffect(_ => {
@@ -10,26 +11,23 @@ const Products = () => {
         fetch(`http://localhost:5000/allServices`)
             .then(res => res.json())
             .then(data => {
-                setServices(data.slice(0, 6))
+                setServices(data)
                 setIsLoading(false)
             })
-    }, [])
+    }, []);
 
     return (
-        <Container >
-            <Typography my={5} variant="h3">
-                Our services
+        <><Container>
+            <Typography my={5} color="chocolate" variant="h3">
+                Explore our all services
             </Typography>
             <Grid container spacing={2}>
-                {
-                    isLoading ? <CircularProgress /> : services?.map(service => <SingleProduct
-                        key={service?._id}
-                        service={service}
-                    />)
-                }
+                {isLoading ? <CircularProgress /> : services?.map(service => <ExploreSingle
+                    key={service?._id}
+                    service={service} />)}
             </Grid>
-        </Container>
+        </Container><Footer /></>
     );
 };
 
-export default Products;
+export default Explore;
