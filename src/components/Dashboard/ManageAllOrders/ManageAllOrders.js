@@ -1,24 +1,24 @@
-import { Card, CardContent, CardMedia, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Button, Card, CardContent, CardMedia, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import React, { Fragment, useEffect, useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
 import ClearIcon from '@mui/icons-material/Clear';
-
-const MyOrders = () => {
+const ManageAllOrders = () => {
     const { user } = useAuth();
     const [myOrders, setMyOrders] = useState([]);
     const [deletedCount, setDeletedCount] = useState(false);
+    const [status, setStatus] = useState(false);
     useEffect(_ => {
-        fetch(`http://localhost:5000/myOrders/${user?.email}`)
+        fetch(`http://localhost:5000/allOrders`)
             .then(res => res.json())
             .then(data => {
                 setMyOrders(data);
             })
-    }, [user?.email, deletedCount]);
+    }, [user?.email, deletedCount, status]);
 
     const handleDelete = id => {
         // eslint-disable-next-line no-restricted-globals
-        const result = confirm("Are you sure you want to cancel this order");
+        const result = confirm("Are you sure you want to delete this order");
         if (result) {
             fetch(`http://localhost:5000/cancelOrder/${id}`, {
                 method: 'DELETE'
@@ -31,6 +31,19 @@ const MyOrders = () => {
                     }
                 });
         }
+    };
+    const handleUpdate = id => {
+        const updatedStatus = "Shipped";
+        fetch(`http://localhost:5000/updateStatus/${id}`, {
+            method: 'PUT',
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ updatedStatus })
+        })
+            .then(res => res.json())
+            .then(result => {
+                setStatus(!status)
+                console.log(result);
+            });
     };
     return (
         <div>
@@ -64,6 +77,7 @@ const MyOrders = () => {
                                             <TableCell align="center">Address</TableCell>
                                             <TableCell align="center">Mobile no</TableCell>
                                             <TableCell align="center">Status</TableCell>
+                                            <TableCell align="center">Update Order</TableCell>
                                             <TableCell align="center">Cancel Order</TableCell>
                                         </TableRow>
                                     </TableHead>
@@ -76,6 +90,7 @@ const MyOrders = () => {
                                             <TableCell align="center">{pd?.address}</TableCell>
                                             <TableCell align="center">{pd?.mobile}</TableCell>
                                             <TableCell align="center">{pd?.status}</TableCell>
+                                            <TableCell align="center"><Button onClick={_ => handleUpdate(pd?._id)} variant="contained">Update</Button></TableCell>
                                             <TableCell align="center"><ClearIcon cursor="pointer" onClick={_ => handleDelete(pd?._id)} /></TableCell>
                                         </TableRow>
                                     </TableBody>
@@ -89,4 +104,4 @@ const MyOrders = () => {
     );
 };
 
-export default MyOrders;
+export default ManageAllOrders;

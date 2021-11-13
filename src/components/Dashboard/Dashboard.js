@@ -18,6 +18,11 @@ import AdminRoute from '../Login/AdminRoute/AdminRoute';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MyOrders from '../Orders/MyOrders/MyOrders';
 import AddProduct from '../AddProduct/AddProduct';
+import Payment from '../Payment/Payment';
+import MakeAdmin from './MakeAdmin/MakeAdmin';
+import ManageAllOrders from './ManageAllOrders/ManageAllOrders';
+import ManageAllProducts from './ManageAllProducts/ManageAllProducts';
+import AddReview from './AddReview/AddReview';
 const drawerWidth = 240;
 
 function Dashboard(props) {
@@ -43,24 +48,24 @@ function Dashboard(props) {
         <div>
             <Toolbar />
             <List>
-                <>
-                    <NavLink style={navStyle} to="/"><Button color="inherit">Home</Button></NavLink>
-                    <Divider />
-                    <NavLink style={navStyle} to={`${url}/myOrders`}><Button color="inherit">My Orders</Button></NavLink>
-                    <Divider />
-                    <NavLink style={navStyle} to={`${url}/pay`}><Button color="inherit">Pay</Button></NavLink>
-                    <Divider />
-                    <NavLink style={navStyle} to={`${url}/review`}><Button color="inherit">Review</Button></NavLink>
-                    <Button onClick={handleLogout} style={{ color: "orangered" }} variant="text" >Logout <LogoutIcon sx={{ color: "orangered" }} /></Button>
-                </>
+                <NavLink style={navStyle} to="/"><Button color="inherit">Home</Button></NavLink>
                 <Divider />
                 {
-                    admin && <>
+                    admin ? <>
                         <NavLink style={navStyle} to={`${url}/manageAllOrders`}><Button color="inherit">Manage All Orders</Button></NavLink>
                         <NavLink style={navStyle} to={`${url}/addProduct`}><Button color="inherit">Add Service</Button></NavLink>
                         <NavLink style={navStyle} to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></NavLink>
-                        <NavLink style={navStyle} to={`${url}/allOrders`}><Button color="inherit">Manage All Orders</Button></NavLink>
-                        <Button onClick={handleLogout} style={{ color: "orangered" }} variant="text" >Logout <LogoutIcon sx={{ color: "orangered" }} /></Button></>
+                        <NavLink style={navStyle} to={`${url}/manageAllProducts`}><Button color="inherit">Manage All Products</Button></NavLink>
+                        <Button onClick={handleLogout} style={{ color: "orangered" }} variant="text" >Logout <LogoutIcon sx={{ color: "orangered" }} /></Button></> :
+                        <>
+                            <Divider />
+                            <NavLink style={navStyle} to={`${url}/myOrders`}><Button color="inherit">My Orders</Button></NavLink>
+                            <Divider />
+                            <NavLink style={navStyle} to={`${url}/pay`}><Button color="inherit">Pay</Button></NavLink>
+                            <Divider />
+                            <NavLink style={navStyle} to={`${url}/addReview`}><Button color="inherit">Review</Button></NavLink>
+                            <Button onClick={handleLogout} style={{ color: "orangered" }} variant="text" >Logout <LogoutIcon sx={{ color: "orangered" }} /></Button>
+                        </>
                 }
             </List>
             <Divider />
@@ -90,7 +95,7 @@ function Dashboard(props) {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
-                        Dashboard
+                        Dashboard {admin ? "Admin" : "User"}
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -138,19 +143,22 @@ function Dashboard(props) {
                         <MyOrders />
                     </Route>
                     <Route path={`${path}/pay`}>
-
+                        <Payment />
                     </Route>
-                    <Route path={`${path}/review`}>
-
+                    <Route path={`${path}/addReview`}>
+                        <AddReview />
                     </Route>
                     <AdminRoute path={`${path}/makeAdmin`}>
-
+                        <MakeAdmin />
                     </AdminRoute>
                     <AdminRoute path={`${path}/addProduct`}>
                         <AddProduct />
                     </AdminRoute>
                     <AdminRoute path={`${path}/manageAllOrders`}>
-
+                        <ManageAllOrders />
+                    </AdminRoute>
+                    <AdminRoute path={`${path}/manageAllProducts`}>
+                        <ManageAllProducts />
                     </AdminRoute>
                 </Switch>
             </Box>
