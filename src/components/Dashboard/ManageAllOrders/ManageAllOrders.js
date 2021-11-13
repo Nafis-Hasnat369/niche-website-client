@@ -47,7 +47,7 @@ const ManageAllOrders = () => {
     };
     return (
         <div>
-            <h2>My Orders: {myOrders?.length}</h2>
+            <h2>All Orders: {myOrders?.length}</h2>
             <Grid container spacing={2}>
                 {
                     myOrders?.map(pd => <Fragment key={pd._id} >

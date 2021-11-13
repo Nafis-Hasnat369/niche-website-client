@@ -43,6 +43,7 @@ const MyOrders = () => {
                                 <CardMedia
                                     component="img"
                                     alt={pd?.name}
+                                    height={300}
                                     image={pd?.img} />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">

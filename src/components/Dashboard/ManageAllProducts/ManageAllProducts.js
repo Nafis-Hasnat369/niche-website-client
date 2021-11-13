@@ -12,7 +12,7 @@ const Products = () => {
         fetch(`http://localhost:5000/allServices`)
             .then(res => res.json())
             .then(data => {
-                setServices(data.slice(0, 6))
+                setServices(data)
                 setIsLoading(false)
             })
     }, [deleteCount])
