@@ -7,9 +7,8 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import { Box } from '@mui/system';
 const Footer = () => {
-
     return (
-        <Grid color="white" backgroundColor="black" container spacing={2}>
+        <Grid mt={10} color="white" backgroundColor="black" container spacing={2}>
             <Grid item xs={12} sm={12} md={4} lg={4} >
                 <RoomIcon sx={{ color: "red" }} />
                 <Typography display="inline-block" variant="body2">
