@@ -137,7 +137,8 @@ function Dashboard(props) {
                 <Toolbar />
                 <Switch>
                     <Route exact path={path}>
-                        {admin ? <ManageAllOrders /> : <MyOrders />}
+                        {admin && <ManageAllOrders />}
+                        {!admin && <MyOrders />}
                     </Route>
                     <Route path={`${path}/myOrders`}>
                         <MyOrders />
