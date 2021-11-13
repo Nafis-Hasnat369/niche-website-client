@@ -1,6 +1,14 @@
+# Welcome to super cars
+   ## => This website is about buying a car, you can buy your favorite car at a fair price.
+   ## => You can book your car here
+   ## => Confirm your orders and browse orders to cancel them,
+   ## => Admin can add a service and can make another person admin
+   ## => Admin can manage others orders and their actions 
+   ## => Admin can delete a service if he want to delete one... 
+
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live site link  [here](https://super-cars-c81b5.web.app/home).
 
 ## Available Scripts
 
