@@ -25,7 +25,6 @@ const ManageAllOrders = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
                     if (data.deletedCount) {
                         setDeletedCount(!deletedCount);
                     }
@@ -42,7 +41,6 @@ const ManageAllOrders = () => {
             .then(res => res.json())
             .then(result => {
                 setStatus(!status)
-                console.log(result);
             });
     };
     return (
