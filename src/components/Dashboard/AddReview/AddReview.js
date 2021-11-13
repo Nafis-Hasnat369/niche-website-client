@@ -9,7 +9,7 @@ const AddReview = () => {
     const [success, setSuccess] = useState(false);
     const onSubmit = data => {
         setSuccess(false);
-        fetch(`http://localhost:5000/addReview`, {
+        fetch(`https://evening-plains-96878.herokuapp.com/addReview`, {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(data)

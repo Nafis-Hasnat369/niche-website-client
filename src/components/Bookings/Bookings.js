@@ -10,7 +10,7 @@ const Bookings = () => {
     const [bookingData, setBookingData] = useState({});
     const [acknowledged, setAcknowledged] = useState(false);
     useEffect(_ => {
-        fetch(`http://localhost:5000/singleProduct/${id}`)
+        fetch(`https://evening-plains-96878.herokuapp.com/singleProduct/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [id]);
@@ -28,7 +28,7 @@ const Bookings = () => {
         bookingData.customerName = user?.displayName;
         bookingData.email = user.email;
         bookingData.status = "processing";
-        fetch(`http://localhost:5000/confirmOrder`, {
+        fetch(`https://evening-plains-96878.herokuapp.com/confirmOrder`, {
             method: 'POST',
             headers: { "content-type": "application/json" },
             body: JSON.stringify(bookingData)

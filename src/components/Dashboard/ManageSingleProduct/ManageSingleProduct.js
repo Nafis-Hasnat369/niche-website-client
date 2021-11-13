@@ -8,7 +8,7 @@ const ManegeSingleProduct = ({ service, setDeleteCount }) => {
         // eslint-disable-next-line no-restricted-globals
         const popup = confirm("Are you sure you want to delete this product")
         if (popup) {
-            fetch(`http://localhost:5000/deleteService/${id}`, {
+            fetch(`https://evening-plains-96878.herokuapp.com/deleteService/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

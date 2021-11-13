@@ -9,7 +9,7 @@ const Products = () => {
     const [deleteCount, setDeleteCount] = useState(0);
     useEffect(_ => {
         setIsLoading(true)
-        fetch(`http://localhost:5000/allServices`)
+        fetch(`https://evening-plains-96878.herokuapp.com/allServices`)
             .then(res => res.json())
             .then(data => {
                 setServices(data)

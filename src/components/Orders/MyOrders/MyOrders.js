@@ -9,7 +9,7 @@ const MyOrders = () => {
     const [myOrders, setMyOrders] = useState([]);
     const [deletedCount, setDeletedCount] = useState(false);
     useEffect(_ => {
-        fetch(`http://localhost:5000/myOrders/${user?.email}`)
+        fetch(`https://evening-plains-96878.herokuapp.com/myOrders/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setMyOrders(data);
@@ -20,7 +20,7 @@ const MyOrders = () => {
         // eslint-disable-next-line no-restricted-globals
         const result = confirm("Are you sure you want to cancel this order");
         if (result) {
-            fetch(`http://localhost:5000/cancelOrder/${id}`, {
+            fetch(`https://evening-plains-96878.herokuapp.com/cancelOrder/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

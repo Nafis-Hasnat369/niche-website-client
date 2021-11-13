@@ -8,7 +8,7 @@ export default function AddProduct() {
     const [success, setSuccess] = useState(false);
     const onSubmit = data => {
         setSuccess(false);
-        fetch(`http://localhost:5000/addServices`, {
+        fetch(`https://evening-plains-96878.herokuapp.com/addServices`, {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(data)

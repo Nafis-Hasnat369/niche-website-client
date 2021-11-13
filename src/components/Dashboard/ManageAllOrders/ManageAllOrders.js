@@ -9,7 +9,7 @@ const ManageAllOrders = () => {
     const [deletedCount, setDeletedCount] = useState(false);
     const [status, setStatus] = useState(false);
     useEffect(_ => {
-        fetch(`http://localhost:5000/allOrders`)
+        fetch(`https://evening-plains-96878.herokuapp.com/allOrders`)
             .then(res => res.json())
             .then(data => {
                 setMyOrders(data);
@@ -20,7 +20,7 @@ const ManageAllOrders = () => {
         // eslint-disable-next-line no-restricted-globals
         const result = confirm("Are you sure you want to delete this order");
         if (result) {
-            fetch(`http://localhost:5000/cancelOrder/${id}`, {
+            fetch(`https://evening-plains-96878.herokuapp.com/cancelOrder/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -34,7 +34,7 @@ const ManageAllOrders = () => {
     };
     const handleUpdate = id => {
         const updatedStatus = "Shipped";
-        fetch(`http://localhost:5000/updateStatus/${id}`, {
+        fetch(`https://evening-plains-96878.herokuapp.com/updateStatus/${id}`, {
             method: 'PUT',
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ updatedStatus })
